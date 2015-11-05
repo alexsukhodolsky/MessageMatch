@@ -1,0 +1,10 @@
+<Alloy>
+	<Window class="container" layout="Vertical">
+		<TextArea id="message" color="#336699" top="25%" width="90%" paddingLeft="10" paddingRight="10" borderColor="#000" height="30%" />
+		<Button title="Save" height="40" width="25%" onClick="saveMessage" />
+		
+		<Label top="20">Word of the day:</Label>
+		<Label id="wordOfTheDay"></Label>
+		<Label id="messageCountDisplay" top="20"></Label>
+	</Window>
+</Alloy>
