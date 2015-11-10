@@ -13,6 +13,7 @@ if (os === 'iPhone OS' && parseInt(Ti.Platform.version.split(".")[0]) >= 8) {
 }
 var today = new Date();
 
+
 // populate the screen with the last message
 if(Ti.App.Properties.hasProperty('message')){
 	$.message.value = Ti.App.Properties.getString('message');
@@ -46,7 +47,12 @@ function checkMessageForWord(word, message){
 	var matchCount = 0;
 	
 	if(message){
-		matchCount = (message.match(new RegExp("(^|\\s)" + word + "(\\s|$)", "g")) || []).length;
+		var splitMessage = message.split(" ");
+		for(var i = 0; i < splitMessage.length; i++) {
+			if(splitMessage[i] === word){
+				matchCount++;
+			}
+		}
 	}
 	
 	$.messageCountDisplay.text = "Matches: " + matchCount.toString();
@@ -54,10 +60,14 @@ function checkMessageForWord(word, message){
 	
 	// update/display notification
 	if(os === 'android') {
-		Titanium.Android.createNotification({
+		var notification = Titanium.Android.createNotification({
+			contentTitle: 'MessageMatch',
+			contentText: matchCount.toString() + " matches found.",
 							number: matchCount,
 							when: today
 						});
+		// Send the notification.
+		Titanium.Android.NotificationManager.notify(1, notification);
 	} else if(os === 'iPhone OS'){
 		var notification = Ti.App.iOS.scheduleLocalNotification ({
 							badge: matchCount
