@@ -2,14 +2,44 @@
 	backgroundColor:"white"
 }
 
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	color: "#000"
+"Window": {
+	layout: "vertical"
 }
 
-"#label": {
+"Label": {
+	width: Ti.UI.SIZE,
+	color: "#000",
+	height: "auto"
+}
+
+"Button": {
+	height: "40",
+	width: "25%"
+}
+
+"#title": {
+	font: {
+		fontSize: 18
+	}
+}
+
+"#messageCountDisplay": {
+	top: "20",
+}
+
+"#wotdLabel": {
+	top: "40",
+}
+
+"#message": {
 	font: {
 		fontSize: 12
-	}
+	},
+	color: "#336699",
+	top: "20",
+	width: "90%",
+	paddingLeft: "10",
+	paddingRight: "10",
+	borderColor: "#000",
+	height: "30%"
 }
